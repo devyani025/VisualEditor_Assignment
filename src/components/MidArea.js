@@ -20,7 +20,7 @@ export const  MidArea =( ) => {
   //     isOver: !!monitor.isOver(),
   //   }),
   // }), [x, y])
-const [list , setList] = useState([])
+const [list , setList] = React.useState([])
 
   const [collectedProps, drop] = useDrop(() => ({
     accept: ItemTypes.MOTION,

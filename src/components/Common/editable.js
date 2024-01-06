@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
 
-const Editable = () => {
-  const [text, setText] = useState('Edit me!');
-
-  const handleInputChange = (e) => {
-    setText(e.target.value);
-  };
+const Editable = (props) => {
+ 
 
   return (
-    <div class="widthHeight">
+    <div id={props.id}>
       <input
-        type="text"
-        value={text}
-        onChange={handleInputChange}
+        type="number"
+        value={props.text}
+        onChange={(e)=>{props.onchange(e)}}
         className="rounded-input"
       />
   

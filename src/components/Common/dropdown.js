@@ -1,22 +1,18 @@
 import React, { useState } from 'react';
 
-const Dropdown = () => {
-  const [selectedOption, setSelectedOption] = useState('Option 1');
-
-  const handleSelectChange = (e) => {
-    setSelectedOption(e.target.value);
-  };
+const Dropdown = (props) => {
+ 
 
   return (
-    <div>
+    <div id={props.id}>
       <select
-        id="dropdown"
-        value={selectedOption}
-        onChange={handleSelectChange}
+        id="selectDropdown"
+        value={props.selectedOption}
+        onChange={(e)=>{props.onchange(e)}}
         className='dropdownStyle'
       >  
-        <option value="mouse pointer">mouse pointer</option>
-        <option value="random position">random position</option>
+        <option value="mouse">mouse pointer</option>
+        <option value="random">random position</option>
       </select>
     </div>
   );

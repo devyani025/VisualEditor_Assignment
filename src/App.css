@@ -3,7 +3,22 @@
   margin-bottom: 20px;
 }
 
-.rounded-input,
+ 
+ .rounded-input::-webkit-inner-spin-button,
+ .rounded-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+ }
+.rounded-input{
+  border: 0.3px solid #ccc;
+  border-radius: 8px;
+  padding: 8px;
+  margin-right: 10px;
+  font-family: Arial;
+  -webkit-appearance: none;
+  width: 15%;
+  height: 15%;
+}
+
 .rounded-dropdown {
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -15,15 +30,34 @@
 .cursor-pointer {
     cursor: pointer;
 }
+#Catty{
+  position: absolute;
+}
+#PositionDropdown{
+  
+}
+#PreviewArea{
+  overflow: hidden;
 
+  width: 100%;
+}
 .cursor-pointer:hover {
     background-color: #007acc; /* Change the color to your preferred hover state color */
 }
-
+#StepsForwardEdit{
+  width: 15%;
+  height: 15%;
+}
 .widthHeight{
     width: 15%;
     height: 15%;
 }
 .dropdownStyle{
-  background-color: red;
+  background-color: #789ed2;
+  border-radius: 30px;
+}
+
+.block{
+ background-color: #4c97ff;
+
 }
