@@ -8,7 +8,7 @@ const Editable = () => {
   };
 
   return (
-    <div>
+    <div class="widthHeight">
       <input
         type="text"
         value={text}

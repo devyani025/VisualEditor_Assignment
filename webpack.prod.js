@@ -2,7 +2,7 @@ const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
-process.env["NODE_ENV"] = "production";
+process.env["NODE_ENV"] = "development";
 
 module.exports = merge([
   common,

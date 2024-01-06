@@ -3,13 +3,15 @@ import Editable from './editable';
 import Dropdown from './dropdown';
 
 export const Block = (props) => {
-
   const MainBlock=()=>{
 
     switch (props.type) {
-      case "random":
-        return RandomBlock()
+      case "randomDropdown":
+        return RandomDropdown()
         break;
+        case "randomDropdown1":
+          return RandomBlock()
+          break;
     
       default:
         return<></>
@@ -17,15 +19,24 @@ export const Block = (props) => {
     }
   }
   
+  const RandomDropdown=()=>{
+
+    return(
+      <>
+      <div class="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer" onClick={() => props.onclick()}>
+      {"Move "}<Dropdown/>{" stepssteps"}
+      </div>    
+      </>
+    )
+
+  }
   const RandomBlock=()=>{
     return (
       <>
-      <div className="flex flex-column flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
-          {"Move"}   <Editable/>{"steps"}
-        
-          
-      </div>
-      </>
+    <div class="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer" onClick={() => props.onclick()}>
+    {"Move "}<Editable/>{" stepssteps"}
+    </div>    
+    </>
   
     )
   }
