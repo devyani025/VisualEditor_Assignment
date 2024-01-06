@@ -2,6 +2,7 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
+  devtool: 'eval-source-map' ,
   entry: {
     app: "./src/index.js",
   },
@@ -46,5 +47,7 @@ module.exports = {
       },
     ],
   },
-  plugins: [new MiniCssExtractPlugin()],
+  plugins: [new MiniCssExtractPlugin() , 
+    // new webpack.HotModuleReplacementPlugin()
+  ],
 };
