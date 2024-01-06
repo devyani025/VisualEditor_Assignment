@@ -1,6 +1,7 @@
 import React from "react";
 import Icon from "./Icon";
 import { Block } from "./block";
+import { Motions } from "./Motions/Motions";
 
 export default function Sidebar() {
   return (
@@ -15,7 +16,7 @@ export default function Sidebar() {
         {"When this sprite clicked"}
       </div>
       <div className="font-bold"> {"Motion"} </div>
-      <Block/>
+      <Motions/>
     </div>
   );
 }
