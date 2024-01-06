@@ -1,0 +1,14 @@
+.editable-text-container,
+.dropdown-container {
+  margin-bottom: 20px;
+}
+
+.rounded-input,
+.rounded-dropdown {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px;
+  margin-right: 10px;
+  width: 15%;
+  height: 15%;
+}

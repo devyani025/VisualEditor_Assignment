@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import Editable from './editable';
+import Dropdown from './dropdown';
 
 export const Block = (props) => {
 
@@ -18,8 +20,10 @@ export const Block = (props) => {
   const RandomBlock=()=>{
     return (
       <>
-      <div className="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
-          {"Move 10 steps"}
+      <div className="flex flex-column flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
+          {"Move"}   <Editable/>{"steps"}
+        
+          
       </div>
       </>
   

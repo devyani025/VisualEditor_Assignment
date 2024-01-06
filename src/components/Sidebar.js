@@ -1,6 +1,6 @@
 import React from "react";
 import Icon from "./Icon";
-import { Block } from "./block";
+import { Block } from "./Common/block";
 import { Motions } from "./Motions/Motions";
 
 export default function Sidebar() {
