@@ -35,11 +35,38 @@ export const Block = (props) => {
         return RotateLeftBlock();
       case "rotateRightBlock":
         return RotateRightBlock();
+        case "glidePositionBlock":
+          return GlidePositionBlock();
       default:
         return <></>
     }
   }
 
+  const GlidePositionBlock=()=>{
+    
+    const handleInputChange = (e) => {
+      setText(e.target.value);
+    };
+    const handleSelectChange = (e) => {
+      setSelectedOption(e.target.value);
+    };
+    return (
+      <>
+        <div ref={drag}
+          id="GlidePositionBlock"
+          style={{
+            opacity: isDragging ? 0.5 : 1,
+            cursor: 'move',
+          }} class="flex flex-row flex-wrap bg-blue-500 text-white cursor-pointer blockPosition" onClick={(e) => { props.onclick(e, selectedOption,  text) }}>
+          {"glide  "}
+          <Editable id="glidePositionEdit" text={text} onchange={(e) => { handleInputChange(e) }} />
+          {"secs to"}
+          <Dropdown id="PositionGlideDropdown" selectedOption={selectedOption} onchange={(e) => { handleSelectChange(e) }} />
+        </div>
+      </>
+    )
+
+  }
   const PositionBlock = () => {
 
     const handleSelectChange = (e) => {
@@ -52,7 +79,7 @@ export const Block = (props) => {
           style={{
             opacity: isDragging ? 0.5 : 1,
             cursor: 'move',
-          }} class="flex flex-row flex-wrap bg-blue-500 text-white cursor-pointer blockPosition" onClick={(e) => { props.onclick(e, selectedOption) }}>
+          }} class="flex flex-row flex-wrap bg-blue-500 text-white cursor-pointer blockPosition" onClick={(e) => { props.onclick(e, selectedOption,null) }}>
           {"go to  "}<Dropdown id="PositionDropdown" selectedOption={selectedOption} onchange={(e) => { handleSelectChange(e) }} />
         </div>
       </>
@@ -74,7 +101,7 @@ export const Block = (props) => {
             opacity: isDragging ? 0.5 : 1,
             cursor: 'move',
           }} class="flex flex-row flex-wrap bg-blue-500 text-white cursor-pointer blockPosition"
-          onClick={(e) => { props.onclick(e, text) }}>
+          onClick={(e) => { props.onclick(e, text,null) }}>
           {"Move"}
           <Editable id="StepsForwardEdit" text={text} onchange={(e) => { handleInputChange(e) }} />
           {"steps"}
@@ -98,7 +125,7 @@ export const Block = (props) => {
             opacity: isDragging ? 0.5 : 1,
             cursor: 'move',
           }} class="flex flex-row flex-wrap bg-blue-500 text-white cursor-pointer blockPosition"
-          onClick={(e) => { props.onclick(e, text) }}>
+          onClick={(e) => { props.onclick(e, text,null) }}>
           {"turn"}
           <FaArrowRotateLeft style={{
             alignSelf: "center",
@@ -125,7 +152,7 @@ export const Block = (props) => {
             opacity: isDragging ? 0.5 : 1,
             cursor: 'move',
           }} class="flex flex-row flex-wrap bg-blue-500 text-white cursor-pointer blockPosition"
-          onClick={(e) => { props.onclick(e, text) }}>
+          onClick={(e) => { props.onclick(e, text,null) }}>
           {"turn"}
           <FaArrowRotateRight style={{
             alignSelf: "center",
