@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import CatSprite from "./CatSprite";
 import Cloud from "./Common/Cloud";
+import { AppContext } from "../App";
+
 
 export default function PreviewArea() {
+
+  let context = useContext(AppContext)
   return (
     <div id="PreviewArea" >
       <CatSprite />
-      <Cloud text={"HELLOO!"} />
+      {!context.showCloud && <Cloud text={"HELLOO!"} />}
     </div>
   );
 }

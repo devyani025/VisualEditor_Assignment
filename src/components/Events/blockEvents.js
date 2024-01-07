@@ -136,7 +136,6 @@
    *  Looks events 
    */
   export const SayEvent = (e, text,t) => {
-    debugger;
        let cat = document.getElementById("Catty");
        let cloud = document.getElementById("cloud");
        cat.style.display = 'block';
