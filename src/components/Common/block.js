@@ -8,6 +8,12 @@ export const Block = (props) => {
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.MOTION,
+    end: (item, monitor) => {
+      const dropResult = monitor.getDropResult();
+      console.log(dropResult)
+      console.log('item --> ' , item)
+      // changeItemColumn(item) ;
+    },
     collect: monitor => ({
       isDragging: !!monitor.isDragging(),
     }),
@@ -74,7 +80,6 @@ export const Block = (props) => {
   }
   const RandomBlock = () => {
     return (
-      <>
         <div
           ref={drag}
           style={{
@@ -88,7 +93,6 @@ export const Block = (props) => {
           <Editable />
           {"steps"}
         </div>
-      </>
 
     )
   }

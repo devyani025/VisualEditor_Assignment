@@ -1,10 +1,11 @@
 import React from 'react'
 import { Block } from '../Common/block';
 
-export const Motions = () => {
+export const Motions = (list) => {
+  
+
 
   const RandomPositionBlockEvent = (event, selectedOption) => {
-    debugger;
     let cat = document.getElementById("Catty");
     cat.style.display = 'block';
     cat.style.position = 'absolute';
@@ -59,9 +60,12 @@ export const Motions = () => {
   }
   return (
     <>
-      <Block type="postionBlock" onclick={(e, se) => { blockEvents(e, se) }} />
+       {list.list.list.map((item)=>{
+        return <Block type={item.blockType} onclick={(e, se) => { blockEvents(e, se) }} />
+      })}
+      {/* <Block type="postionBlock" onclick={(e, se) => { blockEvents(e, se) }} /> */}
       
-      <Block type="stepsForward" onclick={(e, se) => { blockEvents(e, se) }} />
+      {/* <Block type="stepsForward" onclick={(e, se) => { blockEvents(e, se) }} /> */}
 
     </>
   )
