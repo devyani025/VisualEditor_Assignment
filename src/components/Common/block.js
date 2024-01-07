@@ -9,12 +9,8 @@ export const Block = (props) => {
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.MOTION,
-    end: (item, monitor) => {
-      const dropResult = monitor.getDropResult();
-      console.log(dropResult)
-      console.log('item --> ' , item)
-      // changeItemColumn(item) ;
-    },
+    item: { type:props.type },
+ 
     collect: monitor => ({
       isDragging: !!monitor.isDragging(),
     }),
