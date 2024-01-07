@@ -149,7 +149,10 @@
     cloudElement.style.top = `${mouthRect.bottom - 25}px`;
     // cloudElement.style.x = `${mouthRect.x}px`;
     // cloudElement.style.y = `${mouthRect.y }px`;
-    cloudElement.style.transform = mouthRotation;
+    // cloudElement.style.transform = mouthRotation;
 
-   
+       let currentLeft = parseInt(window.getComputedStyle(cat).left);
+       let currentRight = parseInt(window.getComputedStyle(cat).right);
+       cloudElement.style.left = currentLeft ;
+       cloudElement.style.right = currentRight ;
      }
