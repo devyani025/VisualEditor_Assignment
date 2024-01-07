@@ -3,7 +3,7 @@ import { Block } from '../Common/block';
 
 export const Motions = () => {
 
-  const RandomPositionBlockEvent = (event, selectedOption) => {
+  const RandomPositionBlockEvent = (event, selectedOption,t) => {
     debugger;
     let cat = document.getElementById("Catty");
     cat.style.display = 'block';
@@ -34,7 +34,41 @@ export const Motions = () => {
 
   }
 
-  const StepsForwardBlockEvent = (e, text) => {
+  const GlidePositionBlockEvent =(event, selectedOption,t) => {
+    debugger;
+    let cat = document.getElementById("Catty");
+    cat.style.display = 'block';
+    cat.style.position = 'absolute';
+    let div = document.getElementById('PreviewArea');
+    let rect = div.getBoundingClientRect();
+    let tt=parseInt(t);
+    if (selectedOption === "mouse") {
+      div.style.position = '';
+
+      let left = Math.max(rect.left, Math.min(event.clientX, rect.right));
+      let top = Math.max(rect.top, Math.min(event.clientY, rect.bottom));
+      cat.style.transition = `all ${tt}ms ease-out`;
+
+      cat.style.left = left + 'px';
+      cat.style.top = top + 'px';
+    }
+    else {
+      div.style.position = 'relative';
+
+      let divWidth = rect.right - rect.left;
+      let divHeight = rect.bottom - rect.top;
+
+      let left = Math.floor(Math.random() * divWidth);
+      let top = Math.floor(Math.random() * divHeight);
+      cat.style.transition = `all ${tt}ms ease-out`;
+
+      cat.style.left = left + 'px';
+      cat.style.top = top + 'px';
+    }
+
+  }
+
+  const StepsForwardBlockEvent = (e, text,t) => {
 
     let cat = document.getElementById("Catty");
     cat.style.display = 'block';
@@ -58,7 +92,7 @@ export const Motions = () => {
 
   }
 
-  const RotateBlockBlockEvent = (e, text) => {
+  const RotateBlockBlockEvent = (e, text,t) => {
 
     let cat = document.getElementById("Catty");
     cat.style.display = 'block';
@@ -77,25 +111,22 @@ export const Motions = () => {
     cat.style.transform = `rotate(${rotation}deg)`;
   }
 
-
-  const blockEvents = (e, selectedOption) => {
+  const blockEvents = (e, selectedOption, t) => {
     switch (e.target.id) {
       case "PositionBlock":
-        RandomPositionBlockEvent(e, selectedOption);
+        RandomPositionBlockEvent(e, selectedOption, t);
         break;
       case "StepsForwardBlock":
-        StepsForwardBlockEvent(e, selectedOption);
+        StepsForwardBlockEvent(e, selectedOption, t);
         break;
       case "RotateRightBlock":
-        RotateBlockBlockEvent(e, selectedOption);
+        RotateBlockBlockEvent(e, selectedOption, t);
         break;
-        case "RotateLeftBlock":
-          RotateBlockBlockEvent(e, selectedOption);
-          break;
-  
-
-
-
+      case "RotateLeftBlock":
+        RotateBlockBlockEvent(e, selectedOption, t);
+      case "GlidePositionBlock":
+        GlidePositionBlockEvent(e, selectedOption, t);
+        break;
       default:
         break;
     }
@@ -104,13 +135,15 @@ export const Motions = () => {
   }
   return (
     <>
-      <Block type="postionBlock" onclick={(e, se) => { blockEvents(e, se) }} />
+      <Block type="postionBlock" onclick={(e, se, t) => { blockEvents(e, se, t) }} />
 
-      <Block type="stepsForward" onclick={(e, se) => { blockEvents(e, se) }} />
+      <Block type="stepsForward" onclick={(e, se, t) => { blockEvents(e, se, t) }} />
 
-      <Block type="rotateLeftBlock" onclick={(e, se) => { blockEvents(e, se) }} />
+      <Block type="rotateLeftBlock" onclick={(e, se, t) => { blockEvents(e, se, t) }} />
 
-      <Block type="rotateRightBlock" onclick={(e, se) => { blockEvents(e, se) }} />
+      <Block type="rotateRightBlock" onclick={(e, se, t) => { blockEvents(e, se, t) }} />
+
+      <Block type="glidePositionBlock" onclick={(e, se, t) => { blockEvents(e, se, t) }} />
 
 
     </>
