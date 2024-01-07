@@ -139,20 +139,20 @@
    *  Looks events 
    */
   export const SayEvent = (e, text,t) => {
-    const mouthElement = document.getElementById('Catty');
+    const mouthElement = document.getElementById('mouth');
     // not working correctly 
     const mouthRect = mouthElement.getBoundingClientRect();
     const cloudElement = document.getElementById('cloud');
     const mouthRotation = window.getComputedStyle(mouthElement).transform
     cloudElement.style.position = 'absolute';
-    cloudElement.style.left = `${mouthRect.left + 100}px`;
+    cloudElement.style.left = `${mouthRect.left + 50}px`;
     cloudElement.style.top = `${mouthRect.bottom - 25}px`;
     // cloudElement.style.x = `${mouthRect.x}px`;
     // cloudElement.style.y = `${mouthRect.y }px`;
     // cloudElement.style.transform = mouthRotation;
 
-       let currentLeft = parseInt(window.getComputedStyle(cat).left);
-       let currentRight = parseInt(window.getComputedStyle(cat).right);
-       cloudElement.style.left = currentLeft ;
-       cloudElement.style.right = currentRight ;
+      //  let currentLeft = parseInt(window.getComputedStyle(cat).left);
+      //  let currentRight = parseInt(window.getComputedStyle(cat).right);
+      //  cloudElement.style.left = currentLeft ;
+      //  cloudElement.style.right = currentRight ;
      }

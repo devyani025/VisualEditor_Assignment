@@ -6,7 +6,7 @@ import { useRef, forwardRef, useImperativeHandle } from "react";
 import { mergeRefs } from "react-merge-refs";
 import { ItemTypes } from '../DnD/DragTypes';
 import { FaArrowRotateLeft, FaArrowRotateRight } from "react-icons/fa6";
-import { StepsForwardBlockEvent, RandomPositionBlockEvent } from '../Events/blockEvents';
+import { StepsForwardBlockEvent, RandomPositionBlockEvent, SayEvent } from '../Events/blockEvents';
 import { AppContext } from '../../App';
 
 
@@ -66,6 +66,12 @@ export const Block = forwardRef((props, ref) => {
           return RandomPositionBlockEvent(null, selectedOption, text)
         case "glidePositionBlock":
           return RandomPositionBlockEvent(null, selectedOption, text)
+        case "SayBlock":
+          context.setShowCloud(true)
+          setTimeout(() => {
+            return SayEvent(null, selectedOption, text)
+          }, 0);
+          return SayEvent(null, selectedOption, text)
       }
 
     },
@@ -244,7 +250,7 @@ export const Block = forwardRef((props, ref) => {
         onClick={(e)=>{
           context.setShowCloud(!context.showCloud)
           setTimeout(() => {
-            if(context.showCloud)
+            // if(context.showCloud)
               props.onclick(id, text, null);
           }, 0);
         }}
@@ -253,7 +259,7 @@ export const Block = forwardRef((props, ref) => {
         <Editable type={"string"} text={context.cloudText} onchange={(e) => { 
           handleLooksTextChange(context.setCloudText, e) ;   
           setTimeout(() => {
-            if(context.showCloud)
+            // if(context.showCloud)
               props.onclick(e, text, null);
           }, 0);}} 
           />

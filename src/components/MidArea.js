@@ -1,11 +1,15 @@
-import React from "react";
+import React , {useContext} from "react";
 import { useDrop } from "react-dnd";
 import { ItemTypes } from "./DnD/DragTypes";
 import { Block } from "./Common/block";
 import { blockEvents } from "./Events/blockEvents";
 import { useRef } from "react";
+import { AppContext } from "../App";
+
+
 export const  MidArea =(props ) => {
 
+  let context = useContext(AppContext)
   const [list , setList] = React.useState([]);
   const blockRefs = useRef([]);
   function calculateBlockPosition(clientOffset) {
@@ -31,10 +35,7 @@ export const  MidArea =(props ) => {
     
      // Add the new block to the list
      setList((prevList) => [...prevList, newBlock]);
-
-
-
-    setList([...list,l]);
+    // setList([...list,l]);
   }
   const [collectedProps, drop] = useDrop(() => ({
     accept: ItemTypes.MOTION,
@@ -47,10 +48,16 @@ export const  MidArea =(props ) => {
   const handleClean=()=>{
     setList([]);
   }
+
+  const handleReload = () => {
+    window.location.reload();
+  };
+
   const handleParentClick = (e) => {
-    blockRefs.current.forEach((block) => {
+    props.midAreaRef.current.forEach((block) => {
       block.triggerOnClick(e)
     });
+    // context.setShowCloud(false)
   };
  
 
@@ -59,12 +66,13 @@ export const  MidArea =(props ) => {
     <buttonDiv className="buttonDiv">
     <button className="ButtonMidS" onClick={handleParentClick}>Run me</button>
     <button className="ButtonMidS" onClick={handleClean}>Clear</button>
+    <button className="ButtonMidS" onClick={handleReload}>Reset</button>
    </buttonDiv>
      {list.map((item,index)=>{
         return <Block 
         style={{ position: 'absolute', top: item.position.y, left: item.position.x }}
          
-        ref={(ref) => (blockRefs.current[index] = ref)}
+        ref={(ref) => (props.midAreaRef.current[index] = ref)}
         type={item.blockType} 
         onclick={(e, se,t) => {
            blockEvents(e, se,t) 
