@@ -4,7 +4,7 @@ const Editable = (props) => {
  
 
   return (
-    <div id={props.id}>
+    <div id={props.id} class='editable'>
       <input
         type="number"
         value={props.text}

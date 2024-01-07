@@ -14,8 +14,9 @@
   padding: 8px;
   margin-right: 10px;
   font-family: Arial;
+  columns: black;
   -webkit-appearance: none;
-  width: 15%;
+  width: 100%;
   height: 15%;
 }
 
@@ -24,8 +25,7 @@
   border-radius: 8px;
   padding: 8px;
   margin-right: 10px;
-  width: 15%;
-  height: 15%;
+ 
 }
 .cursor-pointer {
     cursor: pointer;
@@ -45,8 +45,7 @@
     background-color: #007acc; /* Change the color to your preferred hover state color */
 }
 #StepsForwardEdit{
-  width: 15%;
-  height: 15%;
+ 
 }
 .widthHeight{
     width: 15%;
@@ -56,8 +55,24 @@
   background-color: #789ed2;
   border-radius: 30px;
 }
-
-.block{
+.editable{
+  width: 2rem;
+  height:0.6rem;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+}
+.blockPosition{
  background-color: #4c97ff;
+ opacity: 1;
+ cursor: move;
+ border-radius: 2rem;
+ justify-content: center;
+ align-content: center;
+ padding: 0.4vh;
+ padding-left: 0.5rem;
+ padding-right: 0.5rem;
+ margin: 0.2rem;
+ font-size: small;
+
 
 }
