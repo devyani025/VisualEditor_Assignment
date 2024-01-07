@@ -125,6 +125,10 @@
       case "GlidePositionBlock":
         GlidePositionBlockEvent(e, selectedOption, t);
         break;
+
+      case "SayEvent":
+        SayEvent(e, selectedOption, t);
+        break;
       default:
         break;
     }

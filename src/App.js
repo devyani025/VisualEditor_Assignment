@@ -11,7 +11,14 @@ import { lookslist_ , list_ } from "./components/Common/constants";
 export const AppContext = createContext();
 export default function App() {
   const [showCloud , setShowCloud] = useState(false)
-  let contextValue = {setShowCloud : setShowCloud , showCloud : showCloud}
+  const [cloudText , setCloudText] = useState("Hello !")
+
+  let contextValue = {
+      setShowCloud : setShowCloud , 
+      showCloud : showCloud ,
+      cloudText : cloudText ,
+      setCloudText : setCloudText
+    }
  return (
   <AppContext.Provider  value={contextValue} >    
   <DndProvider backend={HTML5Backend}>

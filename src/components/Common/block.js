@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useContext } from 'react';
 import Editable from './editable';
 import Dropdown from './dropdown';
 import { useDrag } from 'react-dnd'
@@ -7,9 +7,11 @@ import { mergeRefs } from "react-merge-refs";
 import { ItemTypes } from '../DnD/DragTypes';
 import { FaArrowRotateLeft, FaArrowRotateRight } from "react-icons/fa6";
 import { StepsForwardBlockEvent, RandomPositionBlockEvent } from '../Events/blockEvents';
+import { AppContext } from '../../App';
+
 
 export const Block = forwardRef((props, ref) => {
-
+  let context = useContext(AppContext)
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.MOTION,
     item: { type: props.type },
@@ -20,7 +22,6 @@ export const Block = forwardRef((props, ref) => {
   }))
   const [selectedOption, setSelectedOption] = React.useState("mouse");
   const [text, setText] = React.useState('10');
-  const [say, setSay] = React.useState("Hello !")
   const [think, setThink] = React.useState("Hmmm..")
   const [timer , setTimer]  = useState("2")
 
@@ -232,9 +233,13 @@ export const Block = forwardRef((props, ref) => {
         cursor: 'move',
       }} 
         id={id}
-        className="flex flex-column flex-wrap bg-purple-500 text-white px-2 py-1 my-2 text-sm cursor-pointer blockPosition">
+        className="flex flex-column flex-wrap bg-purple-500 text-white px-2 py-1 my-2 text-sm cursor-pointer blockPosition"
+        onClick={()=>{
+          context.setShowCloud(!context.showCloud)
+        }}
+        >
         {"Say"}
-        <Editable type={"string"} text={say} onchange={(e) => { handleLooksTextChange(setSay, e) }} />
+        <Editable type={"string"} text={context.cloudText} onchange={(e) => { handleLooksTextChange(context.setCloudText, e) }} />
         {isAsync ? `for"
         ${<Editable text={timer} onchange={(e) => { handleLooksTextChange(setTimer, e) }} />}
         "Seconds` : ''}

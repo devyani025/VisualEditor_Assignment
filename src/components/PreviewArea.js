@@ -10,7 +10,7 @@ export default function PreviewArea() {
   return (
     <div id="PreviewArea" >
       <CatSprite />
-      {!context.showCloud && <Cloud text={"HELLOO!"} />}
+      {context.showCloud && <Cloud text={context.cloudText} />}
     </div>
   );
 }
