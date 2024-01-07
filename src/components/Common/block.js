@@ -224,6 +224,7 @@ export const Block = forwardRef((props, ref) => {
   *********************************************************/
   const handleLooksTextChange = (setterFn, e) => {
     setterFn(e.target.value)
+    
   }
   const SayBlock = (isAsync = false , id) => {
     return (
@@ -234,12 +235,22 @@ export const Block = forwardRef((props, ref) => {
       }} 
         id={id}
         className="flex flex-column flex-wrap bg-purple-500 text-white px-2 py-1 my-2 text-sm cursor-pointer blockPosition"
-        onClick={()=>{
+        onClick={(e)=>{
           context.setShowCloud(!context.showCloud)
+          setTimeout(() => {
+            if(context.showCloud)
+              props.onclick(id, text, null);
+          }, 0);
         }}
         >
         {"Say"}
-        <Editable type={"string"} text={context.cloudText} onchange={(e) => { handleLooksTextChange(context.setCloudText, e) }} />
+        <Editable type={"string"} text={context.cloudText} onchange={(e) => { 
+          handleLooksTextChange(context.setCloudText, e) ;   
+          setTimeout(() => {
+            if(context.showCloud)
+              props.onclick(e, text, null);
+          }, 0);}} 
+          />
         {isAsync ? `for"
         ${<Editable text={timer} onchange={(e) => { handleLooksTextChange(setTimer, e) }} />}
         "Seconds` : ''}

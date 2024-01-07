@@ -3,7 +3,6 @@
    * Motions Events 
    */
   export const RandomPositionBlockEvent = (event, selectedOption,t) => {
-    debugger;
     let cat = document.getElementById("Catty");
     cat.style.display = 'block';
     cat.style.position = 'absolute';
@@ -110,7 +109,7 @@
     cat.style.transform = `rotate(${rotation}deg)`;
   }
   export const blockEvents = (e, selectedOption, t) => {
-    switch (e.target.id) {
+    switch ( e?.target?.id || e ) {
       case "PositionBlock":
         RandomPositionBlockEvent(e, selectedOption, t);
         break;
@@ -126,7 +125,7 @@
         GlidePositionBlockEvent(e, selectedOption, t);
         break;
 
-      case "SayEvent":
+      case "SayBlock":
         SayEvent(e, selectedOption, t);
         break;
       default:
@@ -140,17 +139,17 @@
    *  Looks events 
    */
   export const SayEvent = (e, text,t) => {
-       let cat = document.getElementById("Catty");
-       let cloud = document.getElementById("cloud");
-       cat.style.display = 'block';
-       cat.style.position = 'absolute';
+    const mouthElement = document.getElementById('Catty');
+    // not working correctly 
+    const mouthRect = mouthElement.getBoundingClientRect();
+    const cloudElement = document.getElementById('cloud');
+    const mouthRotation = window.getComputedStyle(mouthElement).transform
+    cloudElement.style.position = 'absolute';
+    cloudElement.style.left = `${mouthRect.left + 100}px`;
+    cloudElement.style.top = `${mouthRect.bottom - 25}px`;
+    // cloudElement.style.x = `${mouthRect.x}px`;
+    // cloudElement.style.y = `${mouthRect.y }px`;
+    cloudElement.style.transform = mouthRotation;
 
-       let currentLeft = parseInt(window.getComputedStyle(cat).left);
-       let currentRight = parseInt(window.getComputedStyle(cat).right);
-      cloud.style.left = currentLeft ;
-      cloud.style.right = currentRight ;
-      //  let newLeft = currentLeft + parseInt(text);
-      //  let newRight_ = currentRight - parseInt(text);
-        // setCloudPosition({ currentLeft, currentRight });
    
      }
