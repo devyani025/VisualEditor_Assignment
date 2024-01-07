@@ -149,8 +149,4 @@
        let currentRight = parseInt(window.getComputedStyle(cat).right);
       cloud.style.left = currentLeft ;
       cloud.style.right = currentRight ;
-      //  let newLeft = currentLeft + parseInt(text);
-      //  let newRight_ = currentRight - parseInt(text);
-        // setCloudPosition({ currentLeft, currentRight });
-   
      }

@@ -52,7 +52,7 @@ export const Block = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     //  console.log(e)
     triggerOnClick: (e) => {
-      props.onclick()
+      console.log(e)
       switch (props.type) {
         case "postionBlock":
           return RandomPositionBlockEvent(null, selectedOption, text)
@@ -89,7 +89,8 @@ export const Block = forwardRef((props, ref) => {
           style={{
             opacity: isDragging ? 0.5 : 1,
             cursor: 'move',
-          }} class="flex flex-row flex-wrap bg-blue-500 text-white cursor-pointer blockPosition" onClick={(e) => { props.onclick(e, selectedOption, text) }}>
+            width:'fit-content'
+          }}  class="flex flex-row flex-wrap bg-blue-500 text-white cursor-pointer blockPosition" onClick={(e) => { props.onclick(e, selectedOption, text) }}>
           {"glide  "}
           <Editable id="glidePositionEdit" text={text} onchange={(e) => { handleInputChange(e) }} />
           {"secs to"}
@@ -111,6 +112,7 @@ export const Block = forwardRef((props, ref) => {
           style={{
             opacity: isDragging ? 0.5 : 1,
             cursor: 'move',
+            width:'fit-content'
           }} class="flex flex-row flex-wrap bg-blue-500 text-white cursor-pointer blockPosition" onClick={(e) => { props.onclick(e, selectedOption, null) }}>
           {"go to  "}<Dropdown id="PositionDropdown" selectedOption={selectedOption} onchange={(e) => { handleSelectChange(e) }} />
         </div>
@@ -132,6 +134,7 @@ export const Block = forwardRef((props, ref) => {
           style={{
             opacity: isDragging ? 0.5 : 1,
             cursor: 'move',
+            width:'fit-content'
           }} class="flex flex-row flex-wrap bg-blue-500 text-white cursor-pointer blockPosition"
           onClick={(e) => { props.onclick(e, text, null) }}>
           {"Move"}
@@ -156,6 +159,7 @@ export const Block = forwardRef((props, ref) => {
           style={{
             opacity: isDragging ? 0.5 : 1,
             cursor: 'move',
+            width:'fit-content'
           }} class="flex flex-row flex-wrap bg-blue-500 text-white cursor-pointer blockPosition"
           onClick={(e) => { props.onclick(e, text, null) }}>
           {"turn"}
@@ -183,6 +187,7 @@ export const Block = forwardRef((props, ref) => {
           style={{
             opacity: isDragging ? 0.5 : 1,
             cursor: 'move',
+            width:'fit-content'
           }} class="flex flex-row flex-wrap bg-blue-500 text-white cursor-pointer blockPosition"
           onClick={(e) => { props.onclick(e, text, null) }}>
           {"turn"}
@@ -231,6 +236,7 @@ export const Block = forwardRef((props, ref) => {
       style={{
         opacity: isDragging ? 0.5 : 1,
         cursor: 'move',
+        width:'fit-content'
       }} 
         id={id}
         className="flex flex-column flex-wrap bg-purple-500 text-white px-2 py-1 my-2 text-sm cursor-pointer blockPosition"
