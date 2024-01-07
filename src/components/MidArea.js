@@ -22,7 +22,7 @@ export const  MidArea =(props ) => {
 
   const handleParentClick = () => {
     blockRefs.current.forEach((block) => {
-      block.onclick();
+      block.triggerOnClick()
     });
   };
  

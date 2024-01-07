@@ -2,10 +2,11 @@ import React from 'react';
 import Editable from './editable';
 import Dropdown from './dropdown';
 import { useDrag } from 'react-dnd'
-import { useRef, forwardRef } from "react";
+import { useRef, forwardRef,useImperativeHandle } from "react";
 import { mergeRefs } from "react-merge-refs";
 import { ItemTypes } from '../DnD/DragTypes';
 import { FaArrowRotateLeft, FaArrowRotateRight } from "react-icons/fa6";
+import { StepsForwardBlockEvent,RandomPositionBlockEvent } from '../Events/blockEvents';
 
 export const Block =  forwardRef((props, ref) => {
  
@@ -39,6 +40,26 @@ export const Block =  forwardRef((props, ref) => {
         return <></>
     }
   }
+  useImperativeHandle(ref, () => ({
+   
+    triggerOnClick: ( ) => {
+      switch (props.type) {
+        case "postionBlock":
+          return RandomPositionBlockEvent(null,selectedOption,text)
+        case "stepsForward":
+          return StepsForwardBlockEvent(null,text,selectedOption)
+        case "randomDropdown1":
+          return StepsForwardBlockEvent(null,text,selectedOption)
+        case "rotateLeftBlock":
+          return StepsForwardBlockEvent(null,text,selectedOption)
+        case "rotateRightBlock":
+          return RandomPositionBlockEvent(null,selectedOption,text)
+          case "glidePositionBlock":
+            return RandomPositionBlockEvent(null,selectedOption,text)
+    }
+   
+    },
+    }));
 
   const GlidePositionBlock=()=>{
     

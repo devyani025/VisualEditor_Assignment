@@ -65,7 +65,7 @@ export const RandomPositionBlockEvent = (event, selectedOption,t) => {
   }
 
   export const StepsForwardBlockEvent = (e, text,t) => {
-
+ debugger;
     let cat = document.getElementById("Catty");
     cat.style.display = 'block';
     cat.style.position = 'absolute';
