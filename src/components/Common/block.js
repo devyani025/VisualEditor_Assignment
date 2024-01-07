@@ -2,11 +2,13 @@ import React from 'react';
 import Editable from './editable';
 import Dropdown from './dropdown';
 import { useDrag } from 'react-dnd'
+import { useRef, forwardRef } from "react";
+import { mergeRefs } from "react-merge-refs";
 import { ItemTypes } from '../DnD/DragTypes';
 import { FaArrowRotateLeft, FaArrowRotateRight } from "react-icons/fa6";
 
-export const Block = (props) => {
-
+export const Block =  forwardRef((props, ref) => {
+ 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.MOTION,
     item: { type:props.type },
@@ -48,7 +50,7 @@ export const Block = (props) => {
     };
     return (
       <>
-        <div ref={drag}
+        <div ref={mergeRefs([drag, ref])}
           id="GlidePositionBlock"
           style={{
             opacity: isDragging ? 0.5 : 1,
@@ -70,7 +72,7 @@ export const Block = (props) => {
     };
     return (
       <>
-        <div ref={drag}
+     <div ref={mergeRefs([drag, ref])}
           id="PositionBlock"
           style={{
             opacity: isDragging ? 0.5 : 1,
@@ -91,7 +93,7 @@ export const Block = (props) => {
     return (
       <>
 
-        <div ref={drag}
+<div ref={mergeRefs([drag, ref])}
           id="StepsForwardBlock"
           style={{
             opacity: isDragging ? 0.5 : 1,
@@ -115,7 +117,7 @@ export const Block = (props) => {
     return (
       <>
 
-        <div ref={drag}
+<div ref={mergeRefs([drag, ref])}
           id="RotateLeftBlock"
           style={{
             opacity: isDragging ? 0.5 : 1,
@@ -142,7 +144,7 @@ export const Block = (props) => {
     return (
       <>
 
-        <div ref={drag}
+<div ref={mergeRefs([drag, ref])}
           id="RotateRightBlock"
           style={{
             opacity: isDragging ? 0.5 : 1,
@@ -164,8 +166,7 @@ export const Block = (props) => {
 
   const RandomBlock = () => {
     return (
-        <div
-          ref={drag}
+      <div ref={mergeRefs([drag, ref])}
           style={{
             opacity: isDragging ? 0.5 : 1,
             fontSize: 25,
@@ -182,4 +183,4 @@ export const Block = (props) => {
   }
 
   return <>{MainBlock()}</>
-}
+})
