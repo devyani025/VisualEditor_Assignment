@@ -1,5 +1,8 @@
-
-export const RandomPositionBlockEvent = (event, selectedOption,t) => {
+  /**
+   * 
+   * Motions Events 
+   */
+  export const RandomPositionBlockEvent = (event, selectedOption,t) => {
     debugger;
     let cat = document.getElementById("Catty");
     cat.style.display = 'block';
@@ -106,7 +109,6 @@ export const RandomPositionBlockEvent = (event, selectedOption,t) => {
     rotation = ((rotation % 360) + 360) % 360;
     cat.style.transform = `rotate(${rotation}deg)`;
   }
-
   export const blockEvents = (e, selectedOption, t) => {
     switch (e.target.id) {
       case "PositionBlock":
@@ -129,3 +131,23 @@ export const RandomPositionBlockEvent = (event, selectedOption,t) => {
 
 
   }
+
+  /**
+   *  Looks events 
+   */
+  export const SayEvent = (e, text,t) => {
+    debugger;
+       let cat = document.getElementById("Catty");
+       let cloud = document.getElementById("cloud");
+       cat.style.display = 'block';
+       cat.style.position = 'absolute';
+
+       let currentLeft = parseInt(window.getComputedStyle(cat).left);
+       let currentRight = parseInt(window.getComputedStyle(cat).right);
+      cloud.style.left = currentLeft ;
+      cloud.style.right = currentRight ;
+      //  let newLeft = currentLeft + parseInt(text);
+      //  let newRight_ = currentRight - parseInt(text);
+        // setCloudPosition({ currentLeft, currentRight });
+   
+     }
