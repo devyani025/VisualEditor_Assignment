@@ -6,7 +6,7 @@ import { useRef, forwardRef, useImperativeHandle } from "react";
 import { mergeRefs } from "react-merge-refs";
 import { ItemTypes } from '../DnD/DragTypes';
 import { FaArrowRotateLeft, FaArrowRotateRight } from "react-icons/fa6";
-import { StepsForwardBlockEvent, RandomPositionBlockEvent, SayEvent } from '../Events/blockEvents';
+import { StepsForwardBlockEvent,RotateBlockBlockEvent, RandomPositionBlockEvent,GlidePositionBlockEvent, SayEvent } from '../Events/blockEvents';
 import { AppContext } from '../../App';
 
 
@@ -50,22 +50,22 @@ export const Block = forwardRef((props, ref) => {
     }
   }
   useImperativeHandle(ref, () => ({
-    //  console.log(e)
+   
     triggerOnClick: (e) => {
       console.log(e)
       switch (props.type) {
         case "postionBlock":
-          return RandomPositionBlockEvent(null, selectedOption, text)
+          return RandomPositionBlockEvent(e, selectedOption, text)
         case "stepsForward":
-          return StepsForwardBlockEvent(null, text, selectedOption)
+          return StepsForwardBlockEvent(e, text, selectedOption)
         case "randomDropdown1":
           return StepsForwardBlockEvent(null, text, selectedOption)
         case "rotateLeftBlock":
-          return StepsForwardBlockEvent(null, text, selectedOption)
+          return RotateBlockBlockEvent("left", text, selectedOption)
         case "rotateRightBlock":
-          return RandomPositionBlockEvent(null, selectedOption, text)
+          return RotateBlockBlockEvent("RotateRightBlock", text,selectedOption)
         case "glidePositionBlock":
-          return RandomPositionBlockEvent(null, selectedOption, text)
+          return GlidePositionBlockEvent(e, selectedOption, text)
         case "SayBlock":
           context.setShowCloud(true)
           setTimeout(() => {

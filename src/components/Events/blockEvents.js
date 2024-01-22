@@ -41,27 +41,30 @@
     let rect = div.getBoundingClientRect();
     let tt=parseInt(t);
     if (selectedOption === "mouse") {
+      cat.style.transition = `all ${tt*2}s ease-in-out`;
+
       div.style.position = '';
 
       let left = Math.max(rect.left, Math.min(event.clientX, rect.right));
       let top = Math.max(rect.top, Math.min(event.clientY, rect.bottom));
-      cat.style.transition = `all ${tt}ms ease-out`;
 
       cat.style.left = left + 'px';
       cat.style.top = top + 'px';
     }
     else {
-      div.style.position = 'relative';
+      cat.style.transition = `all ${tt*2}s ease-in-out`;
+
+      
 
       let divWidth = rect.right - rect.left;
       let divHeight = rect.bottom - rect.top;
 
       let left = Math.floor(Math.random() * divWidth);
       let top = Math.floor(Math.random() * divHeight);
-      cat.style.transition = `all ${tt}ms ease-out`;
 
       cat.style.left = left + 'px';
       cat.style.top = top + 'px';
+      div.style.position = 'relative';
     }
 
   }
@@ -100,7 +103,8 @@
     let matrix = window.getComputedStyle(cat).transform;
     let values = matrix == 'none' ? 0 : matrix.match(/matrix\(([^)]+)\)/i)[1].split(',').map(parseFloat);
     let rotation = values == 0 ? 0 : Math.atan2(values[1], values[0]) * (180 / Math.PI);
-    if (e.target.id === 'RotateRightBlock') {
+    let val= e.target?.id ?e.target.id:e
+    if (val=== 'RotateRightBlock') {
       rotation += parseInt(text);
     } else {
       rotation -= parseInt(text);

@@ -11,6 +11,9 @@ export const  MidArea =(props ) => {
 
   let context = useContext(AppContext)
   const [list , setList] = React.useState([]);
+  const[history,setHistory]=React.useState([]);
+  const[isshowHistory,setShowHistory]=React.useState(false);
+
   const blockRefs = useRef([]);
   function calculateBlockPosition(clientOffset) {
     // Convert the client offset to pixels
@@ -47,6 +50,8 @@ export const  MidArea =(props ) => {
 
   const handleClean=()=>{
     setList([]);
+    //isshowHistory?setHistory([]):null;
+    setShowHistory(false);
   }
 
   const handleReload = () => {
@@ -54,19 +59,25 @@ export const  MidArea =(props ) => {
   };
 
   const handleParentClick = (e) => {
+    setHistory([...list]);
     props.midAreaRef.current.forEach((block) => {
       block.triggerOnClick(e)
     });
     // context.setShowCloud(false)
   };
- 
+  const handleHistory=(e)=>{
+    setList([]);
+    setShowHistory(true);
+
+  }
 
   return <div className="flex-1 h-full overflow-auto" ref={drop}> 
    
     <buttonDiv className="buttonDiv">
     <button className="ButtonMidS" onClick={handleParentClick}>Run me</button>
     <button className="ButtonMidS" onClick={handleClean}>Clear</button>
-    <button className="ButtonMidS" onClick={handleReload}>Reset</button>
+    <button className="ButtonMidS" onClick={handleHistory }>History</button>
+   
    </buttonDiv>
      {list.map((item,index)=>{
         return <Block 
@@ -78,5 +89,15 @@ export const  MidArea =(props ) => {
            blockEvents(e, se,t) 
           }} />
       })}
+       {isshowHistory? history.map((item,index)=>{
+        return <div><Block 
+        style={{ position: 'absolute', top: item.position.y, left: item.position.x }}
+         
+        ref={(ref) => (props.midAreaRef.current[index] = ref)}
+        type={item.blockType} 
+        onclick={(e, se,t) => {
+           blockEvents(e, se,t) 
+          }} /></div>
+      }):null}
     </div>;
 }
